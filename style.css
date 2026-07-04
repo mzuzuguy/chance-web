@@ -1,0 +1,383 @@
+@import url('https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@300;400;500&family=Plus+Jakarta+Sans:wght@400;700;800&display=swap');
+
+body {
+    margin: 0;
+    background: #1c1e22;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: #ffffff;
+    overflow-x: hidden;
+    height: 180vh; /* Keeps vertical scroll movement free and active */
+}
+
+/* Screen Aspect Constraint Layer */
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.background {
+    position: absolute;
+    min-width: 100vw;
+    min-height: 100vh;
+    width: auto;
+    height: auto; 
+    object-fit: cover;
+    object-position: 50% 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    filter: brightness(0.45) contrast(1.05);
+    transition: transform 0.1s cubic-bezier(0.1, 0.8, 0.2, 1);
+    will-change: transform;
+}
+
+/* Scanline / HUD Screen Overlay Texture */
+.background-container::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%);
+    background-size: 100% 4px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Tactical HUD Framing Shell */
+.scanner-ui {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 5;
+    pointer-events: none;
+    box-sizing: border-box;
+    padding: 25px;
+    border: 1px solid rgba(0, 188, 255, 0.25);
+}
+
+/* Global interaction settings */
+.profile-card, .branding-container {
+    pointer-events: auto;
+}
+
+/* Top & Bottom Data HUD Bars */
+.top-bar, .bottom-bar {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-family: 'Chivo Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.top-bar { top: 15px; }
+.bottom-bar { bottom: 15px; }
+
+/* Left Profile Tracker Card Interface - Firmly Locked Left */
+.profile-card {
+    position: fixed;
+    top: 85px;
+    left: 45px;
+    width: 280px;
+    border: 1px solid rgba(0, 188, 255, 0.6);
+    background: rgba(23, 26, 30, 0.85);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    padding: 16px;
+    box-sizing: border-box;
+    z-index: 10;
+}
+
+.status-header {
+    font-family: 'Chivo Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    color: #00bcff; 
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(0, 188, 255, 0.3);
+}
+
+.portrait {
+    width: 100%;
+    height: 220px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) contrast(1.1);
+}
+
+.details p {
+    font-family: 'Chivo Mono', monospace;
+    font-size: 11px;
+    margin: 10px 0;
+    line-height: 1.3;
+}
+
+.details p span.label {
+    color: rgba(255, 255, 255, 0.45);
+    display: block;
+}
+
+.details p span.val {
+    color: #ffffff;
+    font-weight: 500;
+}
+
+/* Bottom Rounded Card Element Container */
+.branding-container {
+    position: absolute;
+    bottom: 65px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    width: 480px;
+}
+
+.badge-pill {
+    border: 2px solid #00bcff;
+    border-radius: 4px; 
+    padding: 14px 30px;
+    background: rgba(10, 12, 16, 0.85);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    position: relative;
+    box-sizing: border-box;
+    box-shadow: inset 0 0 15px rgba(0, 188, 255, 0.15), 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.pill-title {
+    margin: 0;
+    font-family: 'Chivo Mono', monospace; 
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: #00bcff;
+    line-height: 1;
+    text-shadow: 0 0 8px rgba(0, 188, 255, 0.4);
+}
+
+.glitch-accent {
+    color: #ffffff;
+    background: rgba(0, 188, 255, 0.25);
+    padding: 2px 6px;
+    border-radius: 2px;
+    animation: pulseSync 2s infinite ease-in-out;
+}
+
+@keyframes pulseSync {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+.handle {
+    font-family: 'Chivo Mono', monospace;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 15px;
+    display: block;
+    letter-spacing: 0.5px;
+}
+
+/* Top Data HUD Bar Layout */
+.top-bar {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.status-line {
+    font-family: 'Chivo Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+/* Tactical Navigation Links Framework */
+.hud-nav {
+    display: flex;
+    gap: 24px;
+    pointer-events: auto; 
+    background: rgba(23, 26, 30, 0.6);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    padding: 6px 20px;
+    border: 1px solid rgba(0, 188, 255, 0.2); 
+    border-radius: 4px;
+}
+
+.nav-item {
+    font-family: 'Chivo Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    position: relative;
+    padding: 2px 0;
+}
+
+.nav-item:hover, .nav-item.active {
+    color: #00bcff; 
+    text-shadow: 0 0 8px rgba(0, 188, 255, 0.6);
+}
+
+.nav-item.active::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background: #00bcff; 
+    border-radius: 50%;
+    box-shadow: 0 0 6px #00bcff;
+}
+
+/* --- About Content Section (Shifted Center-Right safely) --- */
+.about {
+    position: relative;
+    z-index: 3; 
+    /* Left padding (360px) perfectly guarantees clearance of the profile card layout */
+    padding: 140px 6% 120px 360px;
+    background: rgba(11, 11, 11, 0.9);
+    color: white;
+    border-top: 1px solid rgba(0, 188, 255, 0.4);
+    box-sizing: border-box;
+    min-height: 100vh;
+}
+
+.hud-header {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Chivo Mono', monospace;
+    color: #00bcff; 
+    margin-bottom: 30px;
+    letter-spacing: 3px;
+    font-size: 13px;
+}
+
+.about h1 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: #00bcff; 
+    font-size: clamp(2.2rem, 4vw, 3.8rem);
+    margin-bottom: 45px;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.bio {
+    border: 1px solid rgba(0, 188, 255, 0.3); 
+    padding: 35px;
+    background: rgba(255, 255, 255, .02);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+.bio h2 {
+    font-family: 'Chivo Mono', monospace;
+    color: #00bcff; 
+    margin-bottom: 25px;
+    letter-spacing: 4px;
+}
+
+.bio p {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    line-height: 1.8;
+    margin-bottom: 25px;
+    color: #cfcfcf;
+}
+
+.stats {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.stat {
+    border: 1px solid rgba(0, 188, 255, 0.25); 
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, .03);
+    font-family: 'Chivo Mono', monospace;
+    font-size: 12px;
+}
+
+.label {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.value {
+    color: #00bcff; 
+    font-weight: 500;
+}
+
+/* --- Dynamic Responsive Scalers --- */
+@media screen and (max-width: 1250px) {
+    .about {
+        padding-left: 340px;
+    }
+    .about-grid {
+        grid-template-columns: 1.3fr 1fr;
+        gap: 25px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .profile-card {
+        position: absolute;
+        top: 90px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        max-width: 400px;
+    }
+    .about {
+        padding: 480px 5% 100px 5%;
+    }
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    .scanner-ui {
+        position: absolute;
+        height: auto;
+        min-height: 100vh;
+    }
+    .branding-container {
+        position: relative;
+        bottom: 0;
+        margin: 40px auto;
+        width: 100%;
+        max-width: 480px;
+    }
+}
