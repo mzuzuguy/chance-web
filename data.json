@@ -1,0 +1,60 @@
+{
+  "profile": {
+    "name": "Chance Musole",
+    "rank": "Best",
+    "profession": "CYBER SECURITY",
+    "id": "P-2204-02",
+    "status": "OFFLINE ACTIVITY DETECTED",
+    "socialSync": "43%",
+    "interaction": "RARE",
+    "emotion": "CONTROLLED"
+  },
+  "stats": [
+    { "label": "Role", "value": "Cybersecurity Beginner" },
+    { "label": "Current Status", "value": "Learning" },
+    { "label": "Mission", "value": "Learn • Build • Protect" },
+    { "label": "Primary Interest", "value": "Cyber Security" },
+    { "label": "Secondary Skills", "value": "Linux • Networking • Programming" },
+    { "label": "Physical Training", "value": "Distance Running" },
+    { "label": "Mindset", "value": "Discipline & Continuous Growth" }
+  ],
+  "skills": [
+    {
+      "category": "CYBER SECURITY",
+      "icon": "fas fa-shield-alt",
+      "items": [
+        { "name": "Ethical Hacking Fundamentals", "tag": "LEARNING" },
+        { "name": "Vulnerability Assessment", "tag": "TRAINING" },
+        { "name": "Security Concepts & Protocols", "tag": "CORE" }
+      ]
+    },
+    {
+      "category": "INFRASTRUCTURE",
+      "icon": "fas fa-network-wired",
+      "items": [
+        { "name": "Linux Environments", "tag": "ACTIVE" },
+        { "name": "Networking Fundamentals", "tag": "CORE" },
+        { "name": "System Administration", "tag": "BASICS" }
+      ]
+    },
+    {
+      "category": "PROGRAMMING",
+      "icon": "fas fa-code",
+      "items": [
+        { "name": "Scripting (Bash/Python)", "tag": "BUILDING" },
+        { "name": "Web Frontend (HTML/CSS/JS)", "tag": "STABLE" },
+        { "name": "Version Control (GitHub)", "tag": "MANAGED" }
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "role": "Cashier & Sales Associate",
+      "company": "Panorama General Supplier",
+      "duration": "2020 — PRESENT",
+      "status": "ACTIVE",
+      "description": "Handling point-of-sale transactions, customer service, and sales support in a fast-paced retail environment, while managing stock accuracy and daily cash reconciliation."
+    }
+  ],
+  "projects": []
+}

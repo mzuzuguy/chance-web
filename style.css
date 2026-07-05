@@ -9,6 +9,7 @@ html, body {
     color: #ffffff;
     overflow-x: hidden;
     min-height: 100vh;
+    scroll-behavior: smooth;
 }
 
 /* Dynamic Canvas Background Shell */
@@ -36,7 +37,7 @@ html, body {
     border: 1px solid rgba(0, 188, 255, 0.15);
 }
 
-.profile-card, .branding-container {
+.profile-card {
     pointer-events: auto;
 }
 
@@ -179,11 +180,11 @@ html, body {
     border-color: #00bcff;
 }
 
-/* --- About Content Section (Default Desktop Arrangement) --- */
-.about {
+/* --- Content Section Universal Layout Defaults --- */
+.about, .skills-section, .contacts-section {
     position: relative;
     z-index: 3; 
-    padding: 120px 5% 120px 380px; /* Safe padding keeps elements clear of left fixed panel */
+    padding: 120px 5% 60px 380px; 
     box-sizing: border-box;
     width: 100%;
 }
@@ -198,32 +199,41 @@ html, body {
     letter-spacing: 2px;
 }
 
-.about h1 {
+.about h1, .skills-section h2, .contacts-section h2 {
     color: #00bcff; 
-    font-size: clamp(2.5rem, 4.5vw, 4rem);
+    font-size: clamp(2.3rem, 4.5vw, 3.8rem);
     margin: 0 0 35px 0;
     text-transform: uppercase;
 }
 
-.about-grid {
+.about-grid, .contacts-grid {
     display: grid;
     grid-template-columns: 1.4fr 1fr;
     gap: 30px;
 }
 
-.bio {
+/* --- Shared Element Aesthetic Modules --- */
+.bio, .contact-node, .skill-card {
     border: 1px solid rgba(0, 188, 255, 0.2); 
     padding: 30px;
-    background: rgba(13, 17, 23, 0.6);
-    -webkit-backdrop-filter: blur(10px);
+    background: rgba(13, 17, 23, 0.55); /* Rebuilt cleanly transparent matching theme requirements */
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
-.bio h2 {
+.bio h2, .contact-node h3, .skill-card h3 {
     font-family: 'Chivo Mono', monospace;
     color: #00bcff; 
     margin-bottom: 20px;
-    font-size: 18px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.node-icon, .card-icon {
+    font-size: 14px;
 }
 
 .bio p {
@@ -243,7 +253,9 @@ html, body {
     padding: 14px;
     display: flex;
     justify-content: space-between;
-    background: rgba(13, 17, 23, 0.6);
+    background: rgba(13, 17, 23, 0.55);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     font-family: 'Chivo Mono', monospace;
     font-size: 12px;
 }
@@ -252,71 +264,210 @@ html, body {
     color: #00bcff;
 }
 
-/* Bottom Center Branding HUD Pill */
-.branding-container {
-    position: fixed;
-    bottom: 50px;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    width: 100%;
-    max-width: 440px;
-    z-index: 10;
+/* --- Skills Matrix Grid Modules --- */
+.skills-section {
+    padding-top: 60px;
 }
 
-.badge-pill {
-    border: 1.5px solid #00bcff;
-    border-radius: 4px; 
-    padding: 12px 20px;
-    background: rgba(13, 17, 23, 0.9);
-    -webkit-backdrop-filter: blur(4px);
-    backdrop-filter: blur(4px);
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
 }
 
-.pill-title {
-    margin: 0;
-    font-family: 'Chivo Mono', monospace; 
-    font-size: 22px;
-    color: #00bcff;
+.skill-items {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
-.glitch-accent {
-    color: #ffffff;
-    background: rgba(0, 188, 255, 0.25);
-    padding: 2px 6px;
-}
-
-.handle {
+.skill-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     font-family: 'Chivo Mono', monospace;
-    font-size: 11px;
-    color: rgba(255, 255, 255, 0.4);
-    margin-top: 8px;
+    font-size: 13px;
+    color: #d0d5dc;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 8px;
+}
+
+.status-tag {
+    font-size: 10px;
+    color: #00bcff;
+    border: 1px solid rgba(0, 188, 255, 0.3);
+    padding: 2px 6px;
+    border-radius: 2px;
+    background: rgba(0, 188, 255, 0.05);
+}
+
+/* --- Experience Timeline Modules --- */
+.experience-section {
+    position: relative;
+    z-index: 3;
+    padding: 120px 5% 60px 380px;
+    box-sizing: border-box;
+    width: 100%;
+    padding-top: 60px;
+}
+
+.experience-section h2 {
+    color: #00bcff;
+    font-size: clamp(2.3rem, 4.5vw, 3.8rem);
+    margin: 0 0 35px 0;
+    text-transform: uppercase;
+}
+
+.experience-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    position: relative;
+    border-left: 1px dashed rgba(0, 188, 255, 0.25);
+    padding-left: 30px;
+}
+
+.experience-card {
+    position: relative;
+    border: 1px solid rgba(0, 188, 255, 0.2);
+    padding: 26px 30px;
+    background: rgba(13, 17, 23, 0.55);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.experience-card::before {
+    content: '';
+    position: absolute;
+    left: -36px;
+    top: 30px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #00bcff;
+    box-shadow: 0 0 10px rgba(0, 188, 255, 0.7);
+}
+
+.experience-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.experience-head h3 {
+    font-family: 'Chivo Mono', monospace;
+    color: #00bcff;
+    font-size: 16px;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+.experience-company {
+    font-family: 'Chivo Mono', monospace;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.55);
+    margin-top: 4px;
     display: block;
 }
 
-/* ==========================================================================
-   DYNAMIC RESPONSIVE BREAKPOINTS (FIXES MOBILE / SQUISHING VIEWPORT MUSHING)
-   ========================================================================== */
+.experience-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
 
-/* Tablet Optimization Viewport Step */
+.experience-duration {
+    font-family: 'Chivo Mono', monospace;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.45);
+    letter-spacing: 1px;
+}
+
+.experience-desc {
+    font-size: 13px;
+    line-height: 1.7;
+    color: #d0d5dc;
+}
+
 @media screen and (max-width: 1200px) {
-    .about {
+    .experience-section { padding-left: 360px; }
+}
+@media screen and (max-width: 1100px) {
+    .experience-section { padding: 10px 20px 40px 20px; }
+    .experience-timeline { padding-left: 22px; }
+    .experience-card::before { left: -28px; }
+}
+
+/* --- Contact Gateway Refined Modules --- */
+.contacts-section {
+    padding-top: 60px;
+    margin-bottom: 160px;
+}
+
+.contacts-grid {
+    grid-template-columns: 1fr 1fr; /* Equal balanced structural splits */
+}
+
+.comms-line {
+    margin: 24px 0;
+    font-family: 'Chivo Mono', monospace;
+    font-size: 14px;
+    border-bottom: 1px dashed rgba(0, 188, 255, 0.1);
+    padding-bottom: 12px;
+}
+
+.comms-line:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.comms-tag {
+    color: rgba(255, 255, 255, 0.35);
+    display: block;
+    margin-bottom: 6px;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+}
+
+.comms-val {
+    color: #ffffff;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.comms-val:hover:not(.text-only) {
+    color: #00bcff;
+    text-shadow: 0 0 8px rgba(0, 188, 255, 0.6);
+    padding-left: 2px;
+}
+
+.text-accent {
+    color: #00bcff;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   DYNAMIC RESPONSIVE BREAKPOINTS (PREVENTS MUSHING & OVERLAPS)
+   ========================================================================== */
+@media screen and (max-width: 1200px) {
+    .about, .skills-section, .contacts-section {
         padding-left: 360px;
     }
-    .about-grid {
-        grid-template-columns: 1fr; /* Stack text boxes and stats linearly */
+    .about-grid, .contacts-grid {
+        grid-template-columns: 1fr;
     }
 }
 
-/* Mobile & Small Laptop Complete Structural Fluidity Stack */
 @media screen and (max-width: 1100px) {
-    /* 1. Release fixed constraints to let browser handle heights naturally */
     body, html {
         height: auto;
         overflow-y: auto;
     }
 
-    /* 2. Unpin layout boundaries so items can order linearly without overlaps */
     .scanner-ui {
         position: relative;
         height: auto;
@@ -325,38 +476,24 @@ html, body {
         border: none;
     }
 
-    /* 3. Convert Fixed Profile box into a native header item */
     .profile-card {
         position: relative;
         top: 0;
         left: 0;
         width: 100%;
         max-width: 500px;
-        margin: 100px auto 30px auto; /* Centered layout block */
+        margin: 100px auto 30px auto; 
         box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
 
-    /* 4. Shift about data cards below the dynamic module */
-    .about {
-        padding: 10px 20px 160px 20px; /* Safe padding layout reset */
+    .about, .skills-section, .contacts-section {
+        padding: 10px 20px 40px 20px; 
+    }
+    
+    .contacts-section {
+        margin-bottom: 80px;
     }
 
-    .about-grid {
-        grid-template-columns: 1fr;
-    }
-
-    /* 5. Convert Branding module block to follow the stream flow */
-    .branding-container {
-        position: relative;
-        bottom: 0;
-        left: 0;
-        transform: none;
-        margin: 40px auto 20px auto;
-        padding: 0 20px;
-        box-sizing: border-box;
-    }
-
-    /* 6. Secure navbar flexibility for narrow displays */
     .top-bar {
         position: fixed;
         background: rgba(13, 17, 23, 0.95);
@@ -374,6 +511,79 @@ html, body {
     }
 
     .bottom-bar {
-        display: none; /* Hide baseline redundancy overlay lines for clarity */
+        display: none; 
     }
+}
+
+/* --- Projects Section Module Layout --- */
+.projects-section { 
+    position: relative;
+    z-index: 3; 
+    padding: 120px 5% 60px 380px; 
+    box-sizing: border-box;
+    width: 100%;
+    padding-top: 60px; 
+}
+.projects-section h2 {
+    color: #00bcff; 
+    font-size: clamp(2.3rem, 4.5vw, 3.8rem);
+    margin: 0 0 35px 0;
+    text-transform: uppercase;
+}
+.projects-wrapper { 
+    position: relative; 
+    width: 100%; 
+    min-height: 200px; 
+}
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    width: 100%;
+}
+.project-card {
+    border: 1px solid rgba(0, 188, 255, 0.2); 
+    padding: 30px;
+    background: rgba(13, 17, 23, 0.55); 
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* "Coming Soon" Tactical Blur Overlay */
+.development-overlay {
+    position: absolute;
+    inset: 0;
+    border: 1px dashed rgba(0, 188, 255, 0.4);
+    background: rgba(10, 14, 20, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    text-align: center;
+    z-index: 4;
+}
+.dev-title {
+    font-family: 'Chivo Mono', monospace;
+    font-size: 24px;
+    color: #00bcff;
+    letter-spacing: 3px;
+    margin: 0 0 10px 0;
+    text-shadow: 0 0 10px rgba(0, 188, 255, 0.4);
+}
+.dev-subtitle {
+    font-family: 'Chivo Mono', monospace;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 1px;
+}
+
+/* Make sure responsive layouts target projects too */
+@media screen and (max-width: 1200px) {
+    .projects-section { padding-left: 360px; }
+}
+@media screen and (max-width: 1100px) {
+    .projects-section { padding: 10px 20px 40px 20px; }
 }

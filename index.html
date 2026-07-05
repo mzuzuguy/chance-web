@@ -13,18 +13,14 @@
 <!-- Dynamic Canvas Background Layer -->
 <canvas id="background"></canvas>
 
-<!-- About Section (Positioned Center-Right) -->
-<section class="about">
-
+<!-- About Section -->
+<section id="home" class="about">
     <div class="hud-header">
         <span>FILE LOADED</span>
         <span>SUBJECT PROFILE</span>
     </div>
-
     <h1>Chance Musole</h1>
-
     <div class="about-grid">
-
         <div class="bio">
             <h2>PROFILE</h2>
             <p>
@@ -43,52 +39,97 @@
                 chasing shortcuts.
             </p>
         </div>
+        <!-- Injected via JSON -->
+        <div class="stats" id="stats-container"></div>
+    </div>
+</section>
 
-        <div class="stats">
-            <div class="stat">
-                <span class="label">Role</span>
-                <span class="value">Cybersecurity Beginner</span>
-            </div>
-            <div class="stat">
-                <span class="label">Current Status</span>
-                <span class="value">Learning</span>
-            </div>
-            <div class="stat">
-                <span class="label">Mission</span>
-                <span class="value">Learn • Build • Protect</span>
-            </div>
-            <div class="stat">
-                <span class="label">Primary Interest</span>
-                <span class="value">Cyber Security</span>
-            </div>
-            <div class="stat">
-                <span class="label">Secondary Skills</span>
-                <span class="value">Linux • Networking • Programming</span>
-            </div>
-            <div class="stat">
-                <span class="label">Physical Training</span>
-                <span class="value">Distance Running</span>
-            </div>
-            <div class="stat">
-                <span class="label">Mindset</span>
-                <span class="value">Discipline & Continuous Growth</span>
+<!-- Tactical Projects Section (With Development Overlay Blur) -->
+<section id="projects" class="projects-section">
+    <div class="hud-header">
+        <span>DIRECTORY // RECURSING</span>
+        <span>DEPLOYMENTS</span>
+    </div>
+    <h2>PROJECTS_LOG</h2>
+    <div class="projects-wrapper">
+        <!-- Injected via JSON or falls back to 'Coming Soon' overlay if empty -->
+        <div class="projects-grid" id="projects-container"></div>
+    </div>
+</section>
+
+<!-- Tactical Transparent Skills Matrix Section -->
+<section id="skills" class="skills-section">
+    <div class="hud-header">
+        <span>CAPABILITY_INDEX // SEARCHED</span>
+        <span>SKILLSETS MATRIX</span>
+    </div>
+    <h2>CORE_CAPABILITIES</h2>
+    <!-- Injected via JSON -->
+    <div class="skills-grid" id="skills-container"></div>
+</section>
+
+<!-- Tactical Transparent Experience Timeline Section -->
+<section id="experience" class="experience-section">
+    <div class="hud-header">
+        <span>SERVICE_RECORD // VERIFIED</span>
+        <span>FIELD DEPLOYMENTS</span>
+    </div>
+    <h2>EXPERIENCE_LOG</h2>
+    <!-- Injected via JSON -->
+    <div class="experience-timeline" id="experience-container"></div>
+</section>
+
+<!-- Tactical Transparent Contact Details Section -->
+<section id="contacts" class="contacts-section">
+    <div class="hud-header">
+        <span>COMMS_LINK // ESTABLISHED</span>
+        <span>SECURE ENDPOINTS</span>
+    </div>
+    <h2>SECURE_CONTACT_GATEWAY</h2>
+    <div class="contacts-grid">
+        <div class="contact-node">
+            <h3><i class="fas fa-terminal node-icon"></i> DIRECT CORE ENDPOINTS</h3>
+            <div class="node-links">
+                <div class="comms-line">
+                    <span class="comms-tag">EMAIL //</span>
+                    <a href="mailto:chancymusole@gmail.com" class="comms-val">chancymusole@gmail.com</a>
+                </div>
+                <div class="comms-line">
+                    <span class="comms-tag">SECURE VOICE //</span>
+                    <a href="tel:+265894984841" class="comms-val">+265 (0) 8949 84841</a>
+                </div>
+                <div class="comms-line">
+                    <span class="comms-tag">LOCATION //</span>
+                    <span class="comms-val text-only">Mzuzu, Malawi</span>
+                </div>
             </div>
         </div>
-
+        <div class="contact-node">
+            <h3><i class="fas fa-network-wired node-icon"></i> NETWORKING DEPLOYMENTS</h3>
+            <div class="node-links">
+                <div class="comms-line">
+                    <span class="comms-tag">GITHUB SYSTEM ID //</span>
+                    <a href="https://github.com/cmusole-wq" target="_blank" rel="noopener noreferrer" class="comms-val">@cmusole-wq</a>
+                </div>
+                <div class="comms-line">
+                    <span class="comms-tag">WHATSAPP ROUTE //</span>
+                    <a href="https://wa.me/265988918047" target="_blank" rel="noopener noreferrer" class="comms-val">MESSAGE CHANNEL</a>
+                </div>
+                <div class="comms-line">
+                    <span class="comms-tag">ENCRYPTION STATUS //</span>
+                    <span class="comms-val text-only text-accent">TLS 1.3 / AES-256 ACTIVE</span>
+                </div>
+            </div>
+        </div>
     </div>
-
 </section>
 
 <!-- Fixed HUD UI Grid System -->
 <div class="scanner-ui">
-
-    <!-- Top Status Strip & Navigation -->
     <div class="top-bar">
         <div class="status-line">
             SYSTEM STATUS: RECORDING &nbsp;|&nbsp; <span id="time">TIME: --:--:--</span>
         </div>
-        
-        <!-- Tactical Navigation Link System -->
         <nav class="hud-nav">
             <a href="#home" class="nav-item active">HOME</a>
             <a href="#projects" class="nav-item">PROJECTS</a>
@@ -98,16 +139,14 @@
         </nav>
     </div>
 
-    <!-- Left Profiler Interface Panel (Locked Left) -->
+    <!-- Left Profiler Panel -->
     <div class="profile-card">
         <div class="status-header">
-            <span id="statusHeader">OFFLINE ACTIVITY DETECTED</span>
+            <span id="statusHeader">LOADING SYSTEM...</span>
         </div>
-        
         <div class="portrait">
             <img src="images/profile.jpeg" alt="Subject Portrait">
         </div>
-
         <div class="details">
             <p><span class="label">NAME:</span> <span id="name" class="val"></span></p>
             <p><span class="label">RANK:</span> <span id="rank" class="val"></span></p>
@@ -116,33 +155,21 @@
             <p><span class="label">SOCIAL SYNC RATE:</span> <span id="socialSync" class="val"></span></p>
             <p><span class="label">INTERACTION FREQUENCY:</span> <span id="interaction" class="val"></span></p>
             <p><span class="label">EMOTIONAL OUTPUT:</span> <span id="emotion" class="val"></span></p>
-            
-            <!-- Tactical Social Sync Links Layout -->
             <div class="hud-socials">
                 <span class="label">EXTERNAL_LINKS:</span>
                 <div class="social-grid">
-                    <a href="https://facebook.com/" target="_blank" rel="noopener" class="social-link" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://instagram.com/" target="_blank" rel="noopener" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://wa.me/" target="_blank" rel="noopener" class="social-link" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                    <a href="https://github.com/" target="_blank" rel="noopener" class="social-link" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://facebook.com/chance.MW" target="_blank" rel="noopener noreferrer" title="Facebook" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/ymn_x1?igsh=YzhpZjNoaGl0bnJi" target="_blank" rel="noopener noreferrer" title="Instagram" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/265988918047" target="_blank" rel="noopener noreferrer" title="WhatsApp" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://github.com/cmusole-wq" target="_blank" rel="noopener noreferrer" title="GitHub" class="social-link"><i class="fab fa-github"></i></a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Bottom Tactical Branding Layout -->
-    <div class="branding-container">
-        <div class="badge-pill">
-            <h1 class="pill-title">SEC_PROTOCOL // <span class="glitch-accent">KEY_02</span></h1>
-        </div>
-        <span class="handle">@ynm.ig // SYSTEM_OVERRIDE</span>
-    </div>
-
-    <!-- Bottom Status Strip Repeating Header -->
     <div class="bottom-bar">
         <span>SYSTEM STATUS: RECORDING &nbsp;|&nbsp; <span id="time-bottom">TIME: --:--:--</span></span>
     </div>
-
 </div>
 
 <script src="script.js"></script>
