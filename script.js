@@ -27,9 +27,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const now = new Date();
         const timeString = now.toTimeString().split(' ')[0];
         
-        // Output text exactly to both target elements
-        document.getElementById("time").textContent = `TIME: ${timeString}`;
-        document.getElementById("time-bottom").textContent = `TIME: ${timeString}`;
+        // Output text exactly to target elements if they exist
+        const topClock = document.getElementById("time");
+        const bottomClock = document.getElementById("time-bottom");
+        if(topClock) topClock.textContent = `TIME: ${timeString}`;
+        if(bottomClock) bottomClock.textContent = `TIME: ${timeString}`;
     }
     updateClock();
     setInterval(updateClock, 1000);

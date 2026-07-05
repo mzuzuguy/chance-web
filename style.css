@@ -1,12 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@300;400;500&family=Plus+Jakarta+Sans:wght@400;700;800&display=swap');
 
-body {
+/* --- Root & Layout Basics --- */
+html, body {
     margin: 0;
+    padding: 0;
     background: #0d1117;
     font-family: 'Plus Jakarta Sans', sans-serif;
     color: #ffffff;
     overflow-x: hidden;
-    height: 180vh; /* Keeps vertical scroll movement free and active */
+    min-height: 100vh;
 }
 
 /* Dynamic Canvas Background Shell */
@@ -21,17 +23,6 @@ body {
     background: #0d1117;
 }
 
-/* Scanline HUD Screen Overlay Texture */
-.background-container::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%);
-    background-size: 100% 4px;
-    z-index: 2;
-    pointer-events: none;
-}
-
 /* Tactical HUD Framing Shell */
 .scanner-ui {
     position: fixed;
@@ -42,10 +33,9 @@ body {
     pointer-events: none;
     box-sizing: border-box;
     padding: 25px;
-    border: 1px solid rgba(0, 188, 255, 0.25);
+    border: 1px solid rgba(0, 188, 255, 0.15);
 }
 
-/* Global interaction settings */
 .profile-card, .branding-container {
     pointer-events: auto;
 }
@@ -60,183 +50,24 @@ body {
     font-size: 11px;
     letter-spacing: 1.5px;
     color: rgba(255, 255, 255, 0.65);
+    z-index: 6;
 }
 
-.top-bar { top: 15px; }
-.bottom-bar { bottom: 15px; }
-
-/* Left Profile Tracker Card Interface - Firmly Locked Left */
-.profile-card {
-    position: fixed;
-    top: 85px;
-    left: 45px;
-    width: 280px;
-    border: 1px solid rgba(0, 188, 255, 0.6);
-    background: rgba(23, 26, 30, 0.85);
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
-    padding: 16px;
-    box-sizing: border-box;
-    z-index: 10;
-}
-
-.status-header {
-    font-family: 'Chivo Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.5px;
-    color: #00bcff; 
-    margin-bottom: 12px;
-    padding-bottom: 6px;
-    border-bottom: 1px solid rgba(0, 188, 255, 0.3);
-}
-
-.portrait {
-    width: 100%;
-    height: 220px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    overflow: hidden;
-    margin-bottom: 15px;
-}
-
-.portrait img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: grayscale(100%) contrast(1.1);
-}
-
-.details p {
-    font-family: 'Chivo Mono', monospace;
-    font-size: 11px;
-    margin: 10px 0;
-    line-height: 1.3;
-}
-
-.details p span.label {
-    color: rgba(255, 255, 255, 0.45);
-    display: block;
-}
-
-.details p span.val {
-    color: #ffffff;
-    font-weight: 500;
-}
-
-/* Tactical Social Sync System Links */
-.hud-socials {
-    margin-top: 18px;
-    padding-top: 12px;
-    border-top: 1px solid rgba(0, 188, 255, 0.25);
-}
-
-.social-grid {
-    display: flex;
-    gap: 12px;
-    margin-top: 8px;
-}
-
-.social-link {
-    font-family: 'Chivo Mono', monospace;
-    font-size: 11px;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.6);
-    text-decoration: none;
-    background: rgba(0, 188, 255, 0.08);
-    border: 1px solid rgba(0, 188, 255, 0.3);
-    padding: 4px 8px;
-    border-radius: 2px;
-    transition: all 0.2s ease-in-out;
-}
-
-.social-link:hover {
-    color: #00bcff;
-    background: rgba(0, 188, 255, 0.2);
-    border-color: #00bcff;
-    text-shadow: 0 0 6px rgba(0, 188, 255, 0.7);
-    box-shadow: 0 0 8px rgba(0, 188, 255, 0.2);
-    transform: translateY(-1px);
-}
-
-/* Bottom Rounded Card Element Container */
-.branding-container {
-    position: absolute;
-    bottom: 65px;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    width: 480px;
-}
-
-.badge-pill {
-    border: 2px solid #00bcff;
-    border-radius: 4px; 
-    padding: 14px 30px;
-    background: rgba(10, 12, 16, 0.85);
-    -webkit-backdrop-filter: blur(4px);
-    backdrop-filter: blur(4px);
-    position: relative;
-    box-sizing: border-box;
-    box-shadow: inset 0 0 15px rgba(0, 188, 255, 0.15), 0 0 20px rgba(0, 0, 0, 0.5);
-}
-
-.pill-title {
-    margin: 0;
-    font-family: 'Chivo Mono', monospace; 
-    font-size: 28px;
-    font-weight: 500;
-    letter-spacing: 2px;
-    color: #00bcff;
-    line-height: 1;
-    text-shadow: 0 0 8px rgba(0, 188, 255, 0.4);
-}
-
-.glitch-accent {
-    color: #ffffff;
-    background: rgba(0, 188, 255, 0.25);
-    padding: 2px 6px;
-    border-radius: 2px;
-    animation: pulseSync 2s infinite ease-in-out;
-}
-
-@keyframes pulseSync {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.6; }
-}
-
-.handle {
-    font-family: 'Chivo Mono', monospace;
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.5);
-    margin-top: 15px;
-    display: block;
-    letter-spacing: 0.5px;
-}
-
-/* Top Data HUD Bar Layout */
-.top-bar {
-    position: absolute;
-    top: 15px;
-    left: 0;
-    width: 100%;
+.top-bar { 
+    top: 15px; 
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 12px;
 }
-
-.status-line {
-    font-family: 'Chivo Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 1.5px;
-    color: rgba(255, 255, 255, 0.65);
-}
+.bottom-bar { bottom: 15px; }
 
 /* Tactical Navigation Links Framework */
 .hud-nav {
     display: flex;
-    gap: 24px;
+    gap: 20px;
     pointer-events: auto; 
-    background: rgba(23, 26, 30, 0.6);
+    background: rgba(23, 26, 30, 0.85);
     -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);
     padding: 6px 20px;
@@ -253,7 +84,6 @@ body {
     text-decoration: none;
     transition: all 0.2s ease-in-out;
     position: relative;
-    padding: 2px 0;
 }
 
 .nav-item:hover, .nav-item.active {
@@ -261,29 +91,101 @@ body {
     text-shadow: 0 0 8px rgba(0, 188, 255, 0.6);
 }
 
-.nav-item.active::after {
-    content: "";
-    position: absolute;
-    bottom: -2px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 4px;
-    height: 4px;
-    background: #00bcff; 
-    border-radius: 50%;
-    box-shadow: 0 0 6px #00bcff;
+/* Left Profile Tracker Card Interface */
+.profile-card {
+    position: fixed;
+    top: 110px;
+    left: 45px;
+    width: 290px;
+    border: 1px solid rgba(0, 188, 255, 0.4);
+    background: rgba(13, 17, 23, 0.9);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    padding: 18px;
+    box-sizing: border-box;
+    z-index: 10;
 }
 
-/* --- About Content Section (Shifted Center-Right safely) --- */
+.status-header {
+    font-family: 'Chivo Mono', monospace;
+    font-size: 11px;
+    color: #00bcff; 
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(0, 188, 255, 0.2);
+}
+
+.portrait {
+    width: 100%;
+    height: 220px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) contrast(1.1);
+}
+
+.details p {
+    font-family: 'Chivo Mono', monospace;
+    font-size: 11px;
+    margin: 8px 0;
+}
+
+.details p span.label {
+    color: rgba(255, 255, 255, 0.4);
+    display: block;
+}
+
+.details p span.val {
+    color: #ffffff;
+}
+
+/* Tactical Social Sync System Links */
+.hud-socials {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(0, 188, 255, 0.15);
+}
+
+.social-grid {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.social-link {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    font-size: 13px;
+    color: rgba(0, 188, 255, 0.8);
+    text-decoration: none;
+    background: rgba(0, 188, 255, 0.05);
+    border: 1px solid rgba(0, 188, 255, 0.25);
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.social-link:hover {
+    color: #ffffff;
+    background: rgba(0, 188, 255, 0.25);
+    border-color: #00bcff;
+}
+
+/* --- About Content Section (Default Desktop Arrangement) --- */
 .about {
     position: relative;
     z-index: 3; 
-    padding: 140px 6% 120px 360px;
-    background: rgba(11, 11, 11, 0.9);
-    color: white;
-    border-top: 1px solid rgba(0, 188, 255, 0.4);
+    padding: 120px 5% 120px 380px; /* Safe padding keeps elements clear of left fixed panel */
     box-sizing: border-box;
-    min-height: 100vh;
+    width: 100%;
 }
 
 .hud-header {
@@ -291,31 +193,28 @@ body {
     justify-content: space-between;
     font-family: 'Chivo Mono', monospace;
     color: #00bcff; 
-    margin-bottom: 30px;
-    letter-spacing: 3px;
-    font-size: 13px;
+    margin-bottom: 20px;
+    font-size: 12px;
+    letter-spacing: 2px;
 }
 
 .about h1 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
     color: #00bcff; 
-    font-size: clamp(2.2rem, 4vw, 3.8rem);
-    margin-bottom: 45px;
+    font-size: clamp(2.5rem, 4.5vw, 4rem);
+    margin: 0 0 35px 0;
     text-transform: uppercase;
-    letter-spacing: -1px;
 }
 
 .about-grid {
     display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    gap: 40px;
-    align-items: start;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 30px;
 }
 
 .bio {
-    border: 1px solid rgba(0, 188, 255, 0.3); 
-    padding: 35px;
-    background: rgba(255, 255, 255, .02);
+    border: 1px solid rgba(0, 188, 255, 0.2); 
+    padding: 30px;
+    background: rgba(13, 17, 23, 0.6);
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
 }
@@ -323,80 +222,158 @@ body {
 .bio h2 {
     font-family: 'Chivo Mono', monospace;
     color: #00bcff; 
-    margin-bottom: 25px;
-    letter-spacing: 4px;
+    margin-bottom: 20px;
+    font-size: 18px;
 }
 
 .bio p {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    line-height: 1.8;
-    margin-bottom: 25px;
-    color: #cfcfcf;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    color: #d0d5dc;
 }
 
 .stats {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 12px;
 }
 
 .stat {
-    border: 1px solid rgba(0, 188, 255, 0.25); 
-    padding: 16px;
+    border: 1px solid rgba(0, 188, 255, 0.15); 
+    padding: 14px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    background: rgba(255, 255, 255, .03);
+    background: rgba(13, 17, 23, 0.6);
     font-family: 'Chivo Mono', monospace;
     font-size: 12px;
 }
 
-.label {
-    color: rgba(255, 255, 255, 0.4);
-}
-
 .value {
-    color: #00bcff; 
-    font-weight: 500;
+    color: #00bcff;
 }
 
-/* --- Dynamic Responsive Scalers --- */
-@media screen and (max-width: 1250px) {
+/* Bottom Center Branding HUD Pill */
+.branding-container {
+    position: fixed;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    width: 100%;
+    max-width: 440px;
+    z-index: 10;
+}
+
+.badge-pill {
+    border: 1.5px solid #00bcff;
+    border-radius: 4px; 
+    padding: 12px 20px;
+    background: rgba(13, 17, 23, 0.9);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+}
+
+.pill-title {
+    margin: 0;
+    font-family: 'Chivo Mono', monospace; 
+    font-size: 22px;
+    color: #00bcff;
+}
+
+.glitch-accent {
+    color: #ffffff;
+    background: rgba(0, 188, 255, 0.25);
+    padding: 2px 6px;
+}
+
+.handle {
+    font-family: 'Chivo Mono', monospace;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.4);
+    margin-top: 8px;
+    display: block;
+}
+
+/* ==========================================================================
+   DYNAMIC RESPONSIVE BREAKPOINTS (FIXES MOBILE / SQUISHING VIEWPORT MUSHING)
+   ========================================================================== */
+
+/* Tablet Optimization Viewport Step */
+@media screen and (max-width: 1200px) {
     .about {
-        padding-left: 340px;
+        padding-left: 360px;
     }
     .about-grid {
-        grid-template-columns: 1.3fr 1fr;
-        gap: 25px;
+        grid-template-columns: 1fr; /* Stack text boxes and stats linearly */
     }
 }
 
-@media screen and (max-width: 1024px) {
+/* Mobile & Small Laptop Complete Structural Fluidity Stack */
+@media screen and (max-width: 1100px) {
+    /* 1. Release fixed constraints to let browser handle heights naturally */
+    body, html {
+        height: auto;
+        overflow-y: auto;
+    }
+
+    /* 2. Unpin layout boundaries so items can order linearly without overlaps */
+    .scanner-ui {
+        position: relative;
+        height: auto;
+        width: 100%;
+        padding: 15px;
+        border: none;
+    }
+
+    /* 3. Convert Fixed Profile box into a native header item */
     .profile-card {
-        position: absolute;
-        top: 90px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 90%;
-        max-width: 400px;
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        max-width: 500px;
+        margin: 100px auto 30px auto; /* Centered layout block */
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
+
+    /* 4. Shift about data cards below the dynamic module */
     .about {
-        padding: 480px 5% 100px 5%;
+        padding: 10px 20px 160px 20px; /* Safe padding layout reset */
     }
+
     .about-grid {
         grid-template-columns: 1fr;
-        gap: 30px;
     }
-    .scanner-ui {
-        position: absolute;
-        height: auto;
-        min-height: 100vh;
-    }
+
+    /* 5. Convert Branding module block to follow the stream flow */
     .branding-container {
         position: relative;
         bottom: 0;
-        margin: 40px auto;
-        width: 100%;
-        max-width: 480px;
+        left: 0;
+        transform: none;
+        margin: 40px auto 20px auto;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+
+    /* 6. Secure navbar flexibility for narrow displays */
+    .top-bar {
+        position: fixed;
+        background: rgba(13, 17, 23, 0.95);
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(0, 188, 255, 0.15);
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+    }
+    
+    .hud-nav {
+        gap: 12px;
+        padding: 6px 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .bottom-bar {
+        display: none; /* Hide baseline redundancy overlay lines for clarity */
     }
 }
