@@ -2,44 +2,29 @@
 
 body {
     margin: 0;
-    background: #1c1e22;
+    background: #0d1117;
     font-family: 'Plus Jakarta Sans', sans-serif;
     color: #ffffff;
     overflow-x: hidden;
     height: 180vh; /* Keeps vertical scroll movement free and active */
 }
 
-/* Screen Aspect Constraint Layer */
-.background-container {
+/* Dynamic Canvas Background Shell */
+#background {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
     z-index: 1;
-    overflow: hidden;
+    pointer-events: none;
+    background: #0d1117;
 }
 
-.background {
-    position: absolute;
-    min-width: 100vw;
-    min-height: 100vh;
-    width: auto;
-    height: auto; 
-    object-fit: cover;
-    object-position: 50% 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    filter: brightness(0.45) contrast(1.05);
-    transition: transform 0.1s cubic-bezier(0.1, 0.8, 0.2, 1);
-    will-change: transform;
-}
-
-/* Scanline / HUD Screen Overlay Texture */
+/* Scanline HUD Screen Overlay Texture */
 .background-container::after {
     content: "";
-    position: absolute;
+    position: fixed;
     inset: 0;
     background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%);
     background-size: 100% 4px;
@@ -135,6 +120,41 @@ body {
 .details p span.val {
     color: #ffffff;
     font-weight: 500;
+}
+
+/* Tactical Social Sync System Links */
+.hud-socials {
+    margin-top: 18px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(0, 188, 255, 0.25);
+}
+
+.social-grid {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.social-link {
+    font-family: 'Chivo Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    background: rgba(0, 188, 255, 0.08);
+    border: 1px solid rgba(0, 188, 255, 0.3);
+    padding: 4px 8px;
+    border-radius: 2px;
+    transition: all 0.2s ease-in-out;
+}
+
+.social-link:hover {
+    color: #00bcff;
+    background: rgba(0, 188, 255, 0.2);
+    border-color: #00bcff;
+    text-shadow: 0 0 6px rgba(0, 188, 255, 0.7);
+    box-shadow: 0 0 8px rgba(0, 188, 255, 0.2);
+    transform: translateY(-1px);
 }
 
 /* Bottom Rounded Card Element Container */
@@ -258,7 +278,6 @@ body {
 .about {
     position: relative;
     z-index: 3; 
-    /* Left padding (360px) perfectly guarantees clearance of the profile card layout */
     padding: 140px 6% 120px 360px;
     background: rgba(11, 11, 11, 0.9);
     color: white;
